@@ -29,9 +29,9 @@ PbQuaternion :: PbQuaternion()
 
 PbQuaternion :: PbQuaternion(double scalar, double v_x, double v_y, double v_z)
 {
-    s = scalar;
-    x = v_x;
-    y = v_y;
+	s = scalar;
+	x = v_x;
+	y = v_y;
     z = v_z;
 
     //load identity
@@ -55,7 +55,7 @@ PbQuaternion :: PbQuaternion(double scalar, double v_x, double v_y, double v_z)
 
 void PbQuaternion :: calculateMagnitude()
 {
-    magnitude = s*s + x*x + y*y + z*z;
+	magnitude = s*s + x*x + y*y + z*z;
 }
 
 void PbQuaternion :: calculateRotationMatrix()

@@ -7,7 +7,8 @@ struct _point {
 
 class PbChessObject {
     public:
-		virtual void draw() = 0;
+        virtual void draw() = 0;
+        virtual void drawForPicking() = 0;
 
         void setId(unsigned int id) {identifier = id;}
         unsigned int getId() {return identifier;}

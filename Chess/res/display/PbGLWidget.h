@@ -20,8 +20,10 @@ class PbGLWidget : public QGLWidget{
 
         ~PbGLWidget();
 
-        PbChessObject *pawn3;
-        PbChessObject *chessboard;
+        PbPawn *pawn3;
+        PbChessboard *chessboard;
+
+        double translatePawn_x, translatePawn_y, translatePawn_z;
 
         PbCamera *player1camera, *player2camera, *crowdCamera, *pawnCamera;
         PbQuaternion *rotateQuaternion;
@@ -35,12 +37,21 @@ class PbGLWidget : public QGLWidget{
 		virtual void resizeGL(int w, int h);
         virtual void paintGL();
 
+        virtual void mousePressEvent(QMouseEvent *event);
+
     private:
         double angle;
+        GLenum renderMode;
+        GLuint selectBuffer[SELECT_BUFFER_SIZE];
+        QPoint position;
 
         void drawObjects();
         void drawPickableObjects();
         void adjustRotation();
+
+        void startPick();
+        void finishPick();
+        void handlePick(GLint hits, GLuint *_selectBuffer);
 };
 
 #endif // PB_GLWIDGET_H

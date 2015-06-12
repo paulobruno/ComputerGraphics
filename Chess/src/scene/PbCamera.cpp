@@ -15,8 +15,6 @@ PbCamera :: PbCamera(double eye_x, double eye_y, double eye_z,
     viewUp.x = eye_x;
     viewUp.y = eye_y;
     viewUp.z = eye_z + 1.0;
-
-    this->createMatrix();
 }
 
 PbCamera :: PbCamera(double eye_x, double eye_y, double eye_z,
@@ -34,8 +32,6 @@ PbCamera :: PbCamera(double eye_x, double eye_y, double eye_z,
     viewUp.x = viewUp_x;
     viewUp.y = viewUp_y;
     viewUp.z = viewUp_z;
-
-	this->createMatrix();
 }
 
 void PbCamera :: updateEye(double x, double y, double z)
@@ -43,8 +39,6 @@ void PbCamera :: updateEye(double x, double y, double z)
     eye.x = x;
     eye.y = y;
     eye.z = z;
-
-	this->createMatrix();
 }
 
 void PbCamera :: updateLookAt(double x, double y, double z)
@@ -52,8 +46,6 @@ void PbCamera :: updateLookAt(double x, double y, double z)
     lookAt.x = x;
     lookAt.y = y;
     lookAt.z = z;
-
-	this->createMatrix();
 }
 
 void PbCamera :: updateViewUp(double x, double y, double z)
@@ -61,11 +53,42 @@ void PbCamera :: updateViewUp(double x, double y, double z)
     viewUp.x = x;
     viewUp.y = y;
     viewUp.z = z;
-
-	this->createMatrix();
 }
 
-void PbCamera :: createMatrix()
+void PbCamera :: updateCamera(double eye_x, double eye_y, double eye_z,
+                              double lookAt_x, double lookAt_y, double lookAt_z)
+{
+    eye.x = eye_x;
+    eye.y = eye_y;
+    eye.z = eye_z;
+
+    lookAt.x = lookAt_x;
+    lookAt.y = lookAt_y;
+    lookAt.z = lookAt_z;
+
+    viewUp.x = eye_x;
+    viewUp.y = eye_y;
+    viewUp.z = eye_z + 1.0;
+}
+
+void PbCamera :: updateCamera(double eye_x, double eye_y, double eye_z,
+                              double lookAt_x, double lookAt_y, double lookAt_z,
+                              double viewUp_x, double viewUp_y, double viewUp_z)
+{
+    eye.x = eye_x;
+    eye.y = eye_y;
+    eye.z = eye_z;
+
+    lookAt.x = lookAt_x;
+    lookAt.y = lookAt_y;
+    lookAt.z = lookAt_z;
+
+    viewUp.x = viewUp_x;
+    viewUp.y = viewUp_y;
+    viewUp.z = viewUp_z;
+}
+
+double* PbCamera :: getMatrix()
 {
     point vAux;
 
@@ -119,4 +142,6 @@ void PbCamera :: createMatrix()
     matrix[13] = -(j.x*eye.x + j.y*eye.y + j.z*eye.z);
     matrix[14] = -(k.x*eye.x + k.y*eye.y + k.z*eye.z);
     matrix[15] = 1;
+
+    return matrix;
 }

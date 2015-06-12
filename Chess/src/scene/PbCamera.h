@@ -18,6 +18,12 @@ class PbCamera {
 		void updateLookAt(double x, double y, double z);
 		void updateViewUp(double x, double y, double z);
 
+        void updateCamera(double eye_x, double eye_y, double eye_z,
+                          double lookAt_x, double lookAt_y, double lookAt_z);
+        void updateCamera(double eye_x, double eye_y, double eye_z,
+                          double lookAt_x, double lookAt_y, double lookAt_z,
+                          double viewUp_x, double viewUp_y, double viewUp_z);
+
         double getEye_x() {return eye.x;}
         double getEye_y() {return eye.y;}
         double getEye_z() {return eye.z;}
@@ -26,9 +32,9 @@ class PbCamera {
         double getLookAt_y() {return lookAt.y;}
         double getLookAt_z() {return lookAt.z;}
 
-        double* getMatrix() {return matrix;}
+        double* getMatrix();
 
-    private:
+private:
         double matrix[16];
 
         double modI, modK;

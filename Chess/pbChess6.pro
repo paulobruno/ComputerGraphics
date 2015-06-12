@@ -22,7 +22,7 @@ UI_DIR  =   temp
 RCC_DIR =   temp
 MOC_DIR =   temp
 
-TARGET  =   pbChess5
+TARGET  =   pbChess6
 TEMPLATE=   app
 
 INCLUDEPATH +=	.assets assets/models \

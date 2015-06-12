@@ -18,6 +18,7 @@ class PbPawn : public PbChessObject
         PbPawn();
 
         void draw();
+        void drawForPicking() {}
 
     private:
         pawnPoint *pawnPoints;

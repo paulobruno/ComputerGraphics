@@ -1,13 +1,17 @@
 #include "PbPawn.h"
-#include <GL/gl.h>
 #include <cstdlib>
 #include <fstream>
+
+#ifdef __APPLE__
+    #include "gl.h"
+#else
+    #include "GL/gl.h"
+#endif
 
 using namespace std;
 
 PbPawn :: PbPawn()
 {
-    identifier = 2;
     drawable = true;
 
     char type;
