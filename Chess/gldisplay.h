@@ -5,16 +5,18 @@
 #include <QMouseEvent>
 #include "pawn.h"
 #include "chessboard.h"
+#include "camera.h"
 
 class GLDisplay : public QGLWidget
 {
     Q_OBJECT
 private:
-    float angleX, angleY;
-    bool chessboardDrawable, pawnDrawable;
-    QPoint _position;
-    Pawn pawn1, pawn2;
+    bool chessboardDrawable, pawnDrawable, setPlayer1camera, setPlayer2camera, setPawn3camera, setCrowdCamera;
+    double crowdEyeX, crowdEyeY, crowdEyeZ;
+
+    Pawn pawn3;
     Chessboard chessboard;
+    Camera player1camera, player2camera, pawn3camera, crowdCamera;
 
 public:
     explicit GLDisplay(QWidget *parent = 0);
@@ -23,15 +25,17 @@ protected:
     virtual void initializeGL();
     virtual void paintGL();
     virtual void resizeGL(int w, int h);
-    virtual void mouseMoveEvent ( QMouseEvent * event );
-    virtual void mousePressEvent ( QMouseEvent * event );
 
 public slots:
-    void setDefault();
     void setPawnDrawable(bool draw);
     void setChessboardDrawable(bool draw);
-    void setAngleX(int a);
-    void setAngleY(int a);
+    void setPlayer1();
+    void setPlayer2();
+    void setPawn3();
+    void setCrowd();
+    void setCrowdEyeX(double x);
+    void setCrowdEyeY(double y);
+    void setCrowdEyeZ(double z);
 };
 
 #endif // GLDISPLAY_H

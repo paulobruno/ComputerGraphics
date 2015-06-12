@@ -17,6 +17,4 @@ void MainWindow::setDefault()
 {
     ui->checkBoxChessboard->setChecked(true);
     ui->checkBoxPawn->setChecked(true);
-    ui->horizontalScrollBar->setValue(0);
-    ui->verticalScrollBar->setValue(-90);
 }

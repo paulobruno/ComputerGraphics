@@ -6,15 +6,16 @@
 using namespace std;
 
 Chessboard::Chessboard(){
+    char trash;
     float a, b, c;
     int i = 0, j;
 
     ifstream fin;
-    fin.open("../objects/chessboard.txt");
+    fin.open("../objects/chessboard.obj");
 
     for (i = 0; i < CHESSBOARD_HEIGHT; i++) {
         for (j = 0; j < CHESSBOARD_WIDTH; j++) {
-            fin >> a >> b >> c;
+            fin >> trash >> a >> b >> c;
             chessPoint newPoint = {a, b, c};
             chessVertex[i][j] = newPoint;
         }
@@ -44,40 +45,40 @@ void Chessboard::draw()
     //espessura do tabuleiro
     glBegin(GL_TRIANGLES);
         glColor4f(0.2, 0.2, 0.2, 1.0);
-        glVertex3f(0, 0, 0);
-        glVertex3f(0, 0, -0.5);
-        glVertex3f(8, 0, 0);
-        glVertex3f(8, 0, 0);
-        glVertex3f(0, 0, -0.5);
-        glVertex3f(8, 0, -0.5);
+        glVertex3f(-4, -4, 0);
+        glVertex3f(-4, -4, -0.5);
+        glVertex3f(4, -4, 0);
+        glVertex3f(4, -4, 0);
+        glVertex3f(-4, -4, -0.5);
+        glVertex3f(4, -4, -0.5);
 
-        glVertex3f(8, 0, 0);
-        glVertex3f(8, 0, -0.5);
-        glVertex3f(8, 8, 0);
-        glVertex3f(8, 8, 0);
-        glVertex3f(8, 0, -0.5);
-        glVertex3f(8, 8, -0.5);
+        glVertex3f(4, -4, 0);
+        glVertex3f(4, -4, -0.5);
+        glVertex3f(4, 4, 0);
+        glVertex3f(4, 4, 0);
+        glVertex3f(4, -4, -0.5);
+        glVertex3f(4, 4, -0.5);
 
-        glVertex3f(8, 8, 0);
-        glVertex3f(8, 8, -0.5);
-        glVertex3f(0, 8, 0);
-        glVertex3f(0, 8, 0);
-        glVertex3f(8, 8, -0.5);
-        glVertex3f(0, 8, -0.5);
+        glVertex3f(4, 4, 0);
+        glVertex3f(4, 4, -0.5);
+        glVertex3f(-4, 4, 0);
+        glVertex3f(-4, 4, 0);
+        glVertex3f(4, 4, -0.5);
+        glVertex3f(-4, 4, -0.5);
 
-        glVertex3f(0, 8, 0);
-        glVertex3f(0, 8, -0.5);
-        glVertex3f(0, 0, 0);
-        glVertex3f(0, 0, 0);
-        glVertex3f(0, 8, -0.5);
-        glVertex3f(0, 0, -0.5);
+        glVertex3f(-4, 4, 0);
+        glVertex3f(-4, 4, -0.5);
+        glVertex3f(-4, -4, 0);
+        glVertex3f(-4, -4, 0);
+        glVertex3f(-4, 4, -0.5);
+        glVertex3f(-4, -4, -0.5);
 
         glColor4f(0.0, 0.0, 0.0, 1.0);
-        glVertex3f(0, 0, -0.5);
-        glVertex3f(8, 0, -0.5);
-        glVertex3f(0, 8, -0.5);
-        glVertex3f(0, 8, -0.5);
-        glVertex3f(8, 0, -0.5);
-        glVertex3f(8, 8, -0.5);
+        glVertex3f(-4, -4, -0.5);
+        glVertex3f(4, -4, -0.5);
+        glVertex3f(-4, 4, -0.5);
+        glVertex3f(-4, 4, -0.5);
+        glVertex3f(4, -4, -0.5);
+        glVertex3f(4, 4, -0.5);
     glEnd();
 }

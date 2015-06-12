@@ -8,20 +8,21 @@ using namespace std;
 Pawn::Pawn()
 {
     float a, b, c;
+    char trash;
     int i = 0, j;
 
     ifstream fin;
-    fin.open("../objects/pawn.txt");
+    fin.open("../objects/pawn.obj");
 
     {
-        fin >> a >> b >> c;
+        fin >> trash >> a >> b >> c;
         pawnPoint newPoint = {a, b, c};
         pawnVertex[0][0] = newPoint;
     }
 
-    for (i = 1; i< PAWN_HEIGHT - 1; i++) {
+    for (i = 1; i < PAWN_HEIGHT - 1; i++) {
         for (j = 0; j < PAWN_WIDTH; j++) {
-            fin >> a >> b >> c;
+            fin >> trash >> a >> b >> c;
             pawnPoint newPoint = {a, b, c};
             pawnVertex[i][j] = newPoint;
         }
@@ -32,7 +33,7 @@ Pawn::Pawn()
     }
 
     {
-        fin >> a >> b >> c;
+        fin >> trash >> a >> b >> c;
         pawnPoint newPoint = {a, b, c};
         pawnVertex[PAWN_HEIGHT-1][0] = newPoint;
         i++;
@@ -50,7 +51,7 @@ void Pawn::draw()
         //tampa do peao
         for (j = 0; j < PAWN_WIDTH; j++) {
             glColor4f(0.0, 0.0, 0.0, 1.0);
-            glVertex3f(0.0, 0.0, 2.0);
+            glVertex3f(pawnVertex[0][0].x, pawnVertex[0][0].y, pawnVertex[0][0].z);
             glVertex3f(pawnVertex[i][j].x, pawnVertex[i][j].y, pawnVertex[i][j].z);
             glVertex3f(pawnVertex[i][j+1].x, pawnVertex[i][j+1].y, pawnVertex[i][j+1].z);
         }
@@ -74,7 +75,7 @@ void Pawn::draw()
         for (j = 0; j < PAWN_WIDTH; j++) {
             glColor4f(0.0, 0.0, 0.0, 1.0);
             glVertex3f(pawnVertex[i][j].x, pawnVertex[i][j].y, pawnVertex[i][j].z);
-            glVertex3f(0.0, 0.0, 0.0);
+            glVertex3f(pawnVertex[PAWN_HEIGHT-1][0].x, pawnVertex[PAWN_HEIGHT-1][0].y, pawnVertex[PAWN_HEIGHT-1][0].z);
             glVertex3f(pawnVertex[i][j+1].x, pawnVertex[i][j+1].y, pawnVertex[i][j+1].z);
         }
 

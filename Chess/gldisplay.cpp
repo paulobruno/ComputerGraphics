@@ -1,12 +1,22 @@
 #include "gldisplay.h"
 
-GLDisplay::GLDisplay(QWidget *parent) :
-    QGLWidget(parent)
+GLDisplay::GLDisplay(QWidget *parent) : QGLWidget(parent)
 {
-    angleX = 0.0;
-    angleY = 90.0;
+    crowdEyeX = -6.0;
+    crowdEyeY = 0.0;
+    crowdEyeZ = 6.0;
+
     chessboardDrawable = true;
     pawnDrawable = true;
+
+    player1camera.setDate(0.0, -6.0, 6.0, 0.0, 0.0, 0.0, 0.0, 0.0, 12.0);
+    player2camera.setDate(0, 6, 6, 0, 0, 0, 0, 0, 12);
+    pawn3camera.setDate(-1.5, -2.25, 1.75, -1.5, -1.25, 1.75, -1.5, -2.25, 2.75);
+
+    setPlayer1camera = true;
+    setPlayer2camera = false;
+    setPawn3camera = false;
+    setCrowdCamera = false;
 }
 
 void GLDisplay::initializeGL()
@@ -25,53 +35,45 @@ void GLDisplay::resizeGL(int w, int h)
     glLoadIdentity();
 
     if (w > h) {
-        glOrtho(-2.0f, 8.0f*w/h, -2.0f, 8.0f, -20.0f, 20.0f);
+        glFrustum(-0.001f, 0.001f*w/h, -0.001f, 0.001f, 0.0004f, 20.0f);
     } else {
-        glOrtho(-2.0f, 8.0f, -2.0f, 8.0f*h/w, -20.0f, 20.0f);
+        glFrustum(-0.001f, 0.001f, -0.001f, 0.001f*h/w, 0.0004f, 20.0f);
     }
 }
 
 void GLDisplay::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
 
-    glRotatef(-angleY, 1.0, 0.0, 0.0);
-    glRotatef(-angleX, 0.0, 0.0, 1.0);
+    crowdCamera.setDate(crowdEyeX, crowdEyeY, crowdEyeZ, 0.0, 0.0, 0.0, 0.0, 0.0, crowdEyeZ+1.0);
+
+    if (setPlayer1camera) {
+        player1camera.createMatrix();
+        glLoadMatrixd(player1camera.matrix);
+    }
+    else if (setPlayer2camera) {
+        player2camera.createMatrix();
+        glLoadMatrixd(player2camera.matrix);
+    }
+    else if (setPawn3camera) {
+         pawn3camera.createMatrix();
+         glLoadMatrixd(pawn3camera.matrix);
+    }
+    else if (setCrowdCamera) {
+         crowdCamera.createMatrix();
+         glLoadMatrixd(crowdCamera.matrix);
+    }
+    else
+        glLoadIdentity();
 
     if (chessboardDrawable) chessboard.draw();
     if (pawnDrawable) {
         glPushMatrix();
-            glTranslatef(2.5, 1.5, 0.0);
-            pawn1.draw();
-        glPopMatrix();
-        glPushMatrix();
-            glTranslatef(3.5, 1.5, 0.0);
-            pawn2.draw();
+            glTranslatef(-1.5, -2.5, 0.0);
+            pawn3.draw();
         glPopMatrix();
     }
-}
-
-void GLDisplay::mouseMoveEvent(QMouseEvent *event)
-{
-    if( event != NULL ) {
-        QPoint position = event->pos();
-
-        angleX += (position.x() - _position.x());
-        angleY += (position.y() - _position.y());
-
-        _position = position;
-
-        updateGL();
-    }
-}
-
-void GLDisplay::mousePressEvent(QMouseEvent *event)
-{
-    if( event != NULL )
-        _position = event->pos();
 }
 
 void GLDisplay::setChessboardDrawable(bool draw)
@@ -81,29 +83,62 @@ void GLDisplay::setChessboardDrawable(bool draw)
 
 }
 
-void GLDisplay::setAngleX(int a)
-{
-    angleX = a;
-    updateGL();
-}
-
-void GLDisplay::setAngleY(int a)
-{
-    angleY = a;
-    updateGL();
-}
-
 void GLDisplay::setPawnDrawable(bool draw)
 {
     pawnDrawable = draw;
     updateGL();
 }
 
-void GLDisplay::setDefault()
+void GLDisplay::setPlayer1()
 {
-    angleX = 0.0;
-    angleY = 90.0;
-    chessboardDrawable = true;
-    pawnDrawable = true;
+    setPlayer1camera = true;
+    setPlayer2camera = false;
+    setPawn3camera = false;
+    setCrowdCamera = false;
+    updateGL();
+}
+
+void GLDisplay::setPlayer2()
+{
+    setPlayer1camera = false;
+    setPlayer2camera = true;
+    setPawn3camera = false;
+    setCrowdCamera = false;
+    updateGL();
+}
+
+void GLDisplay::setPawn3()
+{
+    setPlayer1camera = false;
+    setPlayer2camera = false;
+    setPawn3camera = true;
+    setCrowdCamera = false;
+    updateGL();
+}
+
+void GLDisplay::setCrowd()
+{
+    setPlayer1camera = false;
+    setPlayer2camera = false;
+    setPawn3camera = false;
+    setCrowdCamera = true;
+    updateGL();
+}
+
+void GLDisplay::setCrowdEyeX(double x)
+{
+    crowdEyeX = x;
+    updateGL();
+}
+
+void GLDisplay::setCrowdEyeY(double y)
+{
+    crowdEyeY = y;
+    updateGL();
+}
+
+void GLDisplay::setCrowdEyeZ(double z)
+{
+    crowdEyeZ = z;
     updateGL();
 }
