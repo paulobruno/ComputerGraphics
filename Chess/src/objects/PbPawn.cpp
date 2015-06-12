@@ -1,28 +1,31 @@
-#include "pawn.h"
+#include "PbPawn.h"
 #include <GL/gl.h>
 #include <cstdlib>
 #include <fstream>
 
 using namespace std;
 
-Pawn::Pawn()
+PbPawn :: PbPawn()
 {
+    identifier = 2;
+    drawable = true;
+
+    char type;
     float a, b, c;
-    char trash;
     int i = 0, j;
 
     ifstream fin;
-    fin.open("../objects/pawn.obj");
+    fin.open("../../assets/models/pawn.obj");
 
     {
-        fin >> trash >> a >> b >> c;
+        fin >> type >> a >> b >> c;
         pawnPoint newPoint = {a, b, c};
         pawnVertex[0][0] = newPoint;
     }
 
     for (i = 1; i < PAWN_HEIGHT - 1; i++) {
         for (j = 0; j < PAWN_WIDTH; j++) {
-            fin >> trash >> a >> b >> c;
+            fin >> type >> a >> b >> c;
             pawnPoint newPoint = {a, b, c};
             pawnVertex[i][j] = newPoint;
         }
@@ -33,17 +36,14 @@ Pawn::Pawn()
     }
 
     {
-        fin >> trash >> a >> b >> c;
+        fin >> type >> a >> b >> c;
         pawnPoint newPoint = {a, b, c};
         pawnVertex[PAWN_HEIGHT-1][0] = newPoint;
         i++;
     }
-
-
-
 }
 
-void Pawn::draw()
+void PbPawn :: draw()
 {
     int i=1, j;
 
@@ -79,5 +79,5 @@ void Pawn::draw()
             glVertex3f(pawnVertex[i][j+1].x, pawnVertex[i][j+1].y, pawnVertex[i][j+1].z);
         }
 
-    glEnd();
+        glEnd();
 }

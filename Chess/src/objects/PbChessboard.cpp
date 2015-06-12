@@ -1,17 +1,21 @@
-#include "chessboard.h"
+#include "PbChessboard.h"
 #include <GL/gl.h>
 #include <cstdlib>
 #include <fstream>
 
 using namespace std;
 
-Chessboard::Chessboard(){
+PbChessboard :: PbChessboard()
+{
+    identifier = 1;
+    drawable = true;
+
     char trash;
     float a, b, c;
     int i = 0, j;
 
     ifstream fin;
-    fin.open("../objects/chessboard.obj");
+    fin.open("../../assets/models/chessboard.obj");
 
     for (i = 0; i < CHESSBOARD_HEIGHT; i++) {
         for (j = 0; j < CHESSBOARD_WIDTH; j++) {
@@ -22,7 +26,7 @@ Chessboard::Chessboard(){
     }
 }
 
-void Chessboard::draw()
+void PbChessboard :: draw()
 {
     int i, j;
 
