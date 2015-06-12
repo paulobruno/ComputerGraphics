@@ -38,9 +38,6 @@ void MainWindow :: updateView()
         ui->doubleSpinBoxViewUpY->setEnabled(false);
         ui->doubleSpinBoxViewUpZ->setEnabled(false);
 
-        ui->horizontalSliderRotationAngle->setEnabled(false);
-        ui->spinBoxRotationAngle->setEnabled(false);
-
         ui->widgetGLWidget->updateGL();
     }
     else if (ui->radioButtonPlayer2->isChecked()) {
@@ -60,9 +57,6 @@ void MainWindow :: updateView()
         ui->doubleSpinBoxViewUpX->setEnabled(false);
         ui->doubleSpinBoxViewUpY->setEnabled(false);
         ui->doubleSpinBoxViewUpZ->setEnabled(false);
-
-        ui->horizontalSliderRotationAngle->setEnabled(false);
-        ui->spinBoxRotationAngle->setEnabled(false);
 
         ui->widgetGLWidget->updateGL();
     }
@@ -84,9 +78,6 @@ void MainWindow :: updateView()
         ui->doubleSpinBoxViewUpY->setEnabled(true);
         ui->doubleSpinBoxViewUpZ->setEnabled(true);
 
-        ui->horizontalSliderRotationAngle->setEnabled(true);
-        ui->spinBoxRotationAngle->setEnabled(true);
-
         ui->widgetGLWidget->updateGL();
     }
     else {
@@ -106,9 +97,6 @@ void MainWindow :: updateView()
         ui->doubleSpinBoxViewUpX->setEnabled(false);
         ui->doubleSpinBoxViewUpY->setEnabled(false);
         ui->doubleSpinBoxViewUpZ->setEnabled(false);
-
-        ui->horizontalSliderRotationAngle->setEnabled(false);
-        ui->spinBoxRotationAngle->setEnabled(false);
 
         ui->widgetGLWidget->updateGL();
     }
@@ -132,20 +120,53 @@ void MainWindow :: updateCamera()
 void MainWindow :: updateVisible()
 {
     if (ui->checkBoxPieces->isChecked())
-        ui->widgetGLWidget->pawn3->setDrawable(true);
+        ui->widgetGLWidget->pawn->setDrawable(true);
     else
-        ui->widgetGLWidget->pawn3->setDrawable(false);
+        ui->widgetGLWidget->pawn->setDrawable(false);
 
     if (ui->checkBoxChessboard->isChecked())
-        ui->widgetGLWidget->chessboard->setDrawable(true);
+    {
+        ui->widgetGLWidget->chessboardBase->setDrawable(true);
+        ui->widgetGLWidget->chessFace1->setDrawable(true);
+        ui->widgetGLWidget->chessFace2->setDrawable(true);
+    }
     else
-        ui->widgetGLWidget->chessboard->setDrawable(false);
+    {
+        ui->widgetGLWidget->chessboardBase->setDrawable(false);
+        ui->widgetGLWidget->chessFace1->setDrawable(false);
+        ui->widgetGLWidget->chessFace2->setDrawable(false);
+    }
 
     ui->widgetGLWidget->updateGL();
 }
 
-void MainWindow :: rotateCamera(int delta)
+void MainWindow :: updateLightVectors()
 {
-    ui->widgetGLWidget->setAngle((double) delta);
+    if (ui->checkBoxVectorN->isChecked())
+        ui->widgetGLWidget->setNormals = true;
+    else
+        ui->widgetGLWidget->setNormals = false;
+
+    if (ui->checkBoxVectorL->isChecked())
+        ui->widgetGLWidget->setVectorsL = true;
+    else
+        ui->widgetGLWidget->setVectorsL = false;
+
+    if (ui->checkBoxVectorR->isChecked())
+        ui->widgetGLWidget->setVectorsR = true;
+    else
+        ui->widgetGLWidget->setVectorsR = false;
+
+    if (ui->checkBoxVectorV->isChecked())
+        ui->widgetGLWidget->setVectorsV = true;
+    else
+        ui->widgetGLWidget->setVectorsV = false;
+
+    ui->widgetGLWidget->updateGL();
+}
+
+void MainWindow :: normalSize(int size)
+{
+    ui->widgetGLWidget->vectorsSize = (float)size / 100;
     ui->widgetGLWidget->updateGL();
 }

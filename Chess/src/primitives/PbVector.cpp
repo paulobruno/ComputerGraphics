@@ -1,116 +1,76 @@
+// 2013, PAULO BRUNO DE SOUSA SERAFIM, Fortaleza - CE, Brasil
+
 #include "PbVector.h"
 #include <cmath>
 
-PbVector :: PbVector() {}
-
-PbVector :: PbVector(double end_x, double end_y, double end_z)
+PbVector :: PbVector() 
 {
-    initialPoint->set_x(0.0);
-    initialPoint->set_y(0.0);
-    initialPoint->set_z(0.0);
+	v_x = 0.0;
+	v_y = 0.0;
+	v_z = 1.0;
 
-	endPoint->set_x(end_x);
-	endPoint->set_y(end_y);
-	endPoint->set_z(end_z);
-
-    magnitude = sqrt(pow(end_x, 2) + pow(end_y, 2) + pow(end_z, 2));
+	magnitude = 1.0;	
 }
 
-PbVector :: PbVector(double init_x, double init_y, double init_z, double end_x, double end_y, double end_z)
+PbVector :: PbVector(double x, double y, double z)
 {
-	initialPoint->set_x(init_x);
-	initialPoint->set_y(init_y);
-	initialPoint->set_z(init_z);
+	v_x = x;
+	v_y = y;
+	v_z = z;
 
-	endPoint->set_x(end_x);
-	endPoint->set_y(end_y);
-	endPoint->set_z(end_z);
-
-    magnitude = sqrt(pow(end_x - init_x, 2) + pow(end_y - init_y, 2) + pow(end_z - init_z, 2));
+    magnitude = calculateMagnitude();
 }
 
-PbVector :: ~PbVector()
+void PbVector :: normalize()
 {
+	v_x /= magnitude;
+	v_y /= magnitude;
+	v_z /= magnitude;
+
+	magnitude = 1.0;
 }
 
-PbVector* PbVector :: normalize()
+void PbVector :: set_x(double x)
 {
-	double ix = initialPoint->get_x();
-	double iy = initialPoint->get_y();
-	double iz = initialPoint->get_z();
-	double ex = endPoint->get_x() / magnitude;
-	double ey = endPoint->get_y() / magnitude;
-	double ez = endPoint->get_z() / magnitude;
-
-    PbVector *normV;
-    normV = new PbVector(ix, iy, iz, ex, ey, ez);
-
-	return normV;
+	v_x = x;
+	magnitude = calculateMagnitude();
 }
 
-double PbVector :: getMagnitude()
+void PbVector :: set_y(double y)
 {
-	return magnitude;
+	v_y = y;
+	magnitude = calculateMagnitude();
 }
 
-void PbVector :: setInitXYZ(double init_x, double init_y, double init_z)
+void PbVector :: set_z(double z) 
 {
-	initialPoint->set_x(init_x);
-	initialPoint->set_y(init_y);
-	initialPoint->set_z(init_z);
+	v_z = z;
+	magnitude = calculateMagnitude();
 }
 
-void PbVector :: setEndXYZ(double end_x, double end_y, double end_z)
+void PbVector :: set_xyz(double x, double y, double z)
 {
-	endPoint->set_x(end_x);
-	endPoint->set_y(end_y);
-	endPoint->set_z(end_z);
-}
-/*
-void PbVector :: setInitX(double x)
-{
+	v_x = x;
+	v_y = y;
+	v_z = z;
+	magnitude = calculateMagnitude();
 }
 
-void PbVector :: setInitY(double y)
+double PbVector :: calculateMagnitude()
 {
+	return sqrt( (v_x * v_x) + (v_y * v_y) + (v_z * v_z) );
 }
 
-void PbVector :: setInitZ(double z)
+PbVector& PbVector :: operator= (const PbVector &v)
 {
-}
+	if (this != &v) 
+	{
+		v_x = v.v_x;
+		v_y = v.v_y;
+		v_z = v.v_z;
 
-void PbVector :: setEndX(double x)
-{
-}
+		magnitude = v.magnitude;
+	}
 
-void PbVector :: setEndY(double y)
-{
+	return *this;
 }
-
-void PbVector :: setEndZ(double z)
-{
-}
-
-double PbVector :: getInitX()
-{
-}
-
-double PbVector :: getInitY()
-{
-}
-
-double PbVector :: getInitZ()
-{
-}
-
-double PbVector :: getEndX()
-{
-}
-
-double PbVector :: getEndY()
-{
-}
-
-double PbVector :: getEndZ()
-{
-}*/

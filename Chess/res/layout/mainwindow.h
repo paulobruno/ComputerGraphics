@@ -20,7 +20,8 @@ class MainWindow : public QMainWindow
         void updateView();
         void updateCamera();
         void updateVisible();
-        void rotateCamera(int delta);
+        void updateLightVectors();
+        void normalSize(int size);
 
     private:
         Ui::MainWindow *ui;

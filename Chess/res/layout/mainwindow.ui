@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>739</width>
-    <height>598</height>
+    <width>839</width>
+    <height>723</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,6 +46,52 @@
            </property>
            <property name="checked">
             <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBoxLightVectors">
+        <property name="title">
+         <string>Light Vectors</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <widget class="QCheckBox" name="checkBoxVectorN">
+           <property name="text">
+            <string>Vector n</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBoxVectorL">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Vector l</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBoxVectorV">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Vector v</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBoxVectorR">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Vector r</string>
            </property>
           </widget>
          </item>
@@ -121,19 +167,6 @@
          </item>
         </layout>
        </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
       </item>
       <item>
        <widget class="QGroupBox" name="groupBoxCamera">
@@ -373,9 +406,9 @@
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QSlider" name="horizontalSliderRotationAngle">
+     <widget class="QSlider" name="horizontalSliderNormalSize">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="cursor">
        <cursorShape>OpenHandCursor</cursorShape>
@@ -387,51 +420,21 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="minimum">
-       <number>-180</number>
+       <number>0</number>
       </property>
       <property name="maximum">
-       <number>180</number>
+       <number>500</number>
       </property>
       <property name="singleStep">
-       <number>5</number>
+       <number>1</number>
+      </property>
+      <property name="value">
+       <number>100</number>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-    </item>
-    <item row="1" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
-      <item>
-       <widget class="QSpinBox" name="spinBoxRotationAngle">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="minimum">
-         <number>-180</number>
-        </property>
-        <property name="maximum">
-         <number>180</number>
-        </property>
-        <property name="singleStep">
-         <number>5</number>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="labelRotationAngle">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Rotation Angle</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </item>
    </layout>
   </widget>
@@ -440,7 +443,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>739</width>
+     <width>839</width>
      <height>25</height>
     </rect>
    </property>
@@ -473,8 +476,8 @@
    <slot>updateView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>615</x>
-     <y>226</y>
+     <x>809</x>
+     <y>390</y>
     </hint>
     <hint type="destinationlabel">
      <x>791</x>
@@ -489,8 +492,8 @@
    <slot>updateView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>672</x>
-     <y>260</y>
+     <x>809</x>
+     <y>418</y>
     </hint>
     <hint type="destinationlabel">
      <x>761</x>
@@ -505,8 +508,8 @@
    <slot>updateView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>587</x>
-     <y>200</y>
+     <x>809</x>
+     <y>362</y>
     </hint>
     <hint type="destinationlabel">
      <x>803</x>
@@ -521,8 +524,8 @@
    <slot>updateView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>648</x>
-     <y>176</y>
+     <x>809</x>
+     <y>334</y>
     </hint>
     <hint type="destinationlabel">
      <x>771</x>
@@ -537,8 +540,8 @@
    <slot>updateCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>582</x>
-     <y>359</y>
+     <x>690</x>
+     <y>516</y>
     </hint>
     <hint type="destinationlabel">
      <x>753</x>
@@ -553,8 +556,8 @@
    <slot>updateCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>637</x>
-     <y>357</y>
+     <x>745</x>
+     <y>516</y>
     </hint>
     <hint type="destinationlabel">
      <x>741</x>
@@ -569,8 +572,8 @@
    <slot>updateCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>692</x>
-     <y>351</y>
+     <x>800</x>
+     <y>516</y>
     </hint>
     <hint type="destinationlabel">
      <x>752</x>
@@ -585,8 +588,8 @@
    <slot>updateCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>687</x>
-     <y>421</y>
+     <x>800</x>
+     <y>583</y>
     </hint>
     <hint type="destinationlabel">
      <x>740</x>
@@ -601,8 +604,8 @@
    <slot>updateCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>655</x>
-     <y>429</y>
+     <x>745</x>
+     <y>583</y>
     </hint>
     <hint type="destinationlabel">
      <x>743</x>
@@ -617,8 +620,8 @@
    <slot>updateCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>571</x>
-     <y>419</y>
+     <x>690</x>
+     <y>583</y>
     </hint>
     <hint type="destinationlabel">
      <x>740</x>
@@ -633,8 +636,8 @@
    <slot>updateCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>589</x>
-     <y>493</y>
+     <x>690</x>
+     <y>650</y>
     </hint>
     <hint type="destinationlabel">
      <x>744</x>
@@ -649,8 +652,8 @@
    <slot>updateCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>648</x>
-     <y>492</y>
+     <x>745</x>
+     <y>650</y>
     </hint>
     <hint type="destinationlabel">
      <x>739</x>
@@ -665,11 +668,11 @@
    <slot>updateCamera()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>689</x>
-     <y>484</y>
+     <x>800</x>
+     <y>650</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1022</x>
+     <x>828</x>
      <y>484</y>
     </hint>
    </hints>
@@ -681,11 +684,11 @@
    <slot>updateVisible()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>623</x>
-     <y>112</y>
+     <x>809</x>
+     <y>122</y>
     </hint>
     <hint type="destinationlabel">
-     <x>842</x>
+     <x>828</x>
      <y>112</y>
     </hint>
    </hints>
@@ -697,76 +700,92 @@
    <slot>updateVisible()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>608</x>
+     <x>809</x>
+     <y>94</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>828</x>
      <y>88</y>
     </hint>
-    <hint type="destinationlabel">
-     <x>881</x>
-     <y>88</y>
-    </hint>
    </hints>
   </connection>
   <connection>
-   <sender>horizontalSliderRotationAngle</sender>
+   <sender>horizontalSliderNormalSize</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MainWindow</receiver>
-   <slot>rotateCamera(int)</slot>
+   <slot>normalSize(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>246</x>
-     <y>541</y>
+     <x>239</x>
+     <y>697</y>
     </hint>
     <hint type="destinationlabel">
-     <x>249</x>
-     <y>618</y>
+     <x>231</x>
+     <y>602</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>horizontalSliderRotationAngle</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>spinBoxRotationAngle</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>411</x>
-     <y>533</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>538</x>
-     <y>536</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>spinBoxRotationAngle</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>horizontalSliderRotationAngle</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>557</x>
-     <y>543</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>463</x>
-     <y>541</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>spinBoxRotationAngle</sender>
-   <signal>valueChanged(int)</signal>
+   <sender>checkBoxVectorN</sender>
+   <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>rotateCamera(int)</slot>
+   <slot>updateLightVectors()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>616</x>
-     <y>532</y>
+     <x>809</x>
+     <y>179</y>
     </hint>
     <hint type="destinationlabel">
-     <x>625</x>
-     <y>631</y>
+     <x>828</x>
+     <y>175</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxVectorL</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>updateLightVectors()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>809</x>
+     <y>203</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>828</x>
+     <y>201</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxVectorV</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>updateLightVectors()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>809</x>
+     <y>231</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>828</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxVectorR</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>updateLightVectors()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>809</x>
+     <y>262</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>828</x>
+     <y>259</y>
     </hint>
    </hints>
   </connection>
@@ -777,5 +796,7 @@
   <slot>updateVisible()</slot>
   <slot>rotateCamera()</slot>
   <slot>rotateCamera(int)</slot>
+  <slot>normalSize(int)</slot>
+  <slot>updateLightVectors()</slot>
  </slots>
 </ui>

@@ -1,42 +1,34 @@
+// 2013, PAULO BRUNO DE SOUSA SERAFIM, Fortaleza - CE, Brasil
+
 #ifndef PB_VECTOR_H
 #define PB_VECTOR_H
 
-#include "PbPoint.h"
-
-class PbVector{
+class PbVector {
 	public:
-        PbVector();
-        PbVector(double end_x, double end_y, double end_z);
-        PbVector(double init_x, double init_y, double init_z,
-                 double end_x, double end_y, double end_z);
+		PbVector(); // create a single PbVector(0, 0, 1)
+		PbVector(double x, double y, double z);
 
-        virtual ~PbVector();
+		virtual ~PbVector() {}
 
-        PbVector* normalize();
+		void normalize(); // normalize this PbVector, previous informations are lost
 
-		void setInitXYZ(double init_x, double init_y, double init_z);
-		void setEndXYZ(double end_x, double end_y, double end_z);
+		// all below automatically update magnitude
+		void set_x(double x);
+		void set_y(double y);
+		void set_z(double z);
+		void set_xyz(double x, double y, double z);
 
-		double getMagnitude();
-/*
-		void setInitX(double x);
-		void setInitY(double y);
-		void setInitZ(double z);
-		void setEndX(double x);
-		void setEndY(double y);
-		void setEndZ(double z);
+        double get_x() {return v_x;}
+        double get_y() {return v_y;}
+        double get_z() {return v_z;}
+		double getMagnitude() {return magnitude;}
 
-		double getLenght();
-		double getInitX();
-		double getInitY();
-		double getInitZ();
-		double getEndX();
-		double getEndY();
-		double getEndZ();
-*/
-	private:
-        PbPoint *initialPoint, *endPoint;
-		double magnitude;
+        PbVector& operator= (const PbVector &v);
+
+	protected:
+		double v_x, v_y, v_z, magnitude;
+
+		double calculateMagnitude();
 };
 
 #endif // PB_VECTOR_H
